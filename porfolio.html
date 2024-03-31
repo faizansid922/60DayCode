@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="https://d27028dliefpk3.cloudfront.net/assets/favicon/favicon.ico" type="image/x-icon">
+    <title>My Portfolio</title>
+</head>
+<style>
+    .nav{
+        width: 100%;
+        padding: 10px 10px;
+        position: fixed;
+        top: 0%;
+        left: 0%;
+        background-color: rgb(53, 54, 34);
+       
+        
+    }
+
+    ul{
+        list-style: none;
+        display: flex;
+        justify-content: space-evenly;
+        color: aliceblue;
+        
+        
+    }
+
+    .main{
+        
+        margin: auto;
+        width: 75%;
+        height: 220px;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        border: 3px solid rgb(242, 242, 248);
+        margin-top: 5%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        border-radius: 15px;
+    }
+
+    h3{
+        margin-left: 45%;
+        font-family: "Gill Sans", sans-serif;
+    }
+    p{
+        font-family: "Gill Sans", sans-serif;
+    }
+
+    #home{
+        color: rgb(47, 245, 47);
+    }
+    #edu{
+        color: rgb(239, 42, 42);
+    }
+    #pro{
+        color: rgb(240, 240, 68);
+    }
+    #ski{
+        color: rgb(145, 50, 234);
+    }
+
+    @media all and (max-width:900px) and (min-width:550px){
+        .main{
+            grid-template-columns: repeat(1,1fr);
+        }
+        .nav{
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 10px;
+            
+        }
+    }
+</style>
+<body>
+    <div class="nav">
+        <ul >
+            <li>Home</li>
+            <li>Education</li>
+            <li>Project</li>
+            <li>Skills</li>
+            <li>Contact</li>
+        </ul>
+    </div>
+
+    <div class="main">
+        <div >
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6g25FZBLjj1qkWUcDkmP0UZXJFej2vrJ2U9dO0zgPem9VMaf_" alt="">
+        </div>
+        <div>
+            <h3 id="home">Home</h3>
+            <p>This is dummy description for the Home section.Lorem ipsum dolor sit amet,consetetur adipiscing elit. </p>
+        </div>     
+    </div>
+
+    <div class="main">
+        <div>
+            <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQxoEvemjeR4h_hofWURrGtfV1GEy3kJWHbAwoH5JTSkaFg2z6n" alt="">
+        </div>
+        <div>
+            <h3 id="edu">Education</h3>
+            <p>This is dummy description for the Education section.Lorem ipsum dolor sit amet,consetetur adipiscing elit. </p></div>
+    </div>
+
+    <div class="main">
+        <div>
+            <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRAh4B58kVIjnviIm-9wwnSI6Jo0viDko46THj5qzgpx7JdHhAI" alt="">
+        </div>
+        <div>
+            <h3 id="pro">Project</h3>
+            <p>This is dummy description for the Project section.Lorem ipsum dolor sit amet,consetetur adipiscing elit. </p></div>
+    </div>
+
+    <div class="main">
+        <div>
+            <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQLq1xfI8Lp-4cX49S9WLRgskTE9WkagGyEgAuOD8DENQ0baFtb" alt="">
+            </div>
+            <div>
+            <h3 id="ski">Skills</h3>
+            <p>This is dummy description for the Skills section.Lorem ipsum dolor sit amet,consetetur adipiscing elit. </p>
+        </div>
+    </div>
+
+
+</body>
+</html>
