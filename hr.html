@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Signup Page HTML -->
+<form id="signupForm">
+    <input type="text" id="name" placeholder="Name" required>
+    <select id="role" required>
+      <option value="HR">HR</option>
+      <option value="Employee">Employee</option>
+    </select>
+    <input type="password" id="password" placeholder="Password" required>
+    <button type="submit">Sign Up</button>
+  </form>
+  
+  <!-- Login Page HTML -->
+  <form id="loginForm">
+    <input type="text" id="username" placeholder="Name" required>
+    <input type="password" id="loginPassword" placeholder="Password" required>
+    <button type="submit">Log In</button>
+  </form>
+  
+  <!-- Employee Records Page HTML -->
+  <table id="employeeTable">
+    <!-- Table headers -->
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Role</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <!-- Table body -->
+    <tbody>
+      <!-- Employee records will be dynamically added here -->
+    </tbody>
+  </table>
+  
+</body>
+
+<script>
+    // JavaScript for Signup Page
+document.getElementById('signupForm').addEventListener('submit', function(event) {
+  event.preventDefault();
+  const name = document.getElementById('name').value;
+  const role = document.getElementById('role').value;
+  const password = document.getElementById('password').value;
+  
+  // Store signup details in localStorage
+  localStorage.setItem('username', name);
+  localStorage.setItem('role', role);
+  localStorage.setItem('password', password);
+  
+  alert('Signup successful!');
+});
+
+// JavaScript for Login Page
+document.getElementById('loginForm').addEventListener('submit', function(event) {
+  event.preventDefault();
+  const username = document.getElementById('username').value;
+  const loginPassword = document.getElementById('loginPassword').value;
+  
+  // Check if username and password match stored data
+  const storedUsername = localStorage.getItem('username');
+  const storedRole = localStorage.getItem('role');
+  const storedPassword = localStorage.getItem('password');
+  
+  if (username === storedUsername && loginPassword === storedPassword) {
+    alert('Login successful!');
+    // Redirect to Employee Records Page
+    window.location.href = 'employeeRecords.html';
+  } else {
+    alert('Invalid username or password!');
+  }
+});
+
+// JavaScript for Employee Records Page
+document.addEventListener('DOMContentLoaded', function() {
+  const role = localStorage.getItem('role');
+  if (role === 'HR') {
+    // Show HR-specific operations
+    const table = document.getElementById('employeeTable');
+    // Example: Add a new row to the table
+    const newRow = table.insertRow();
+    newRow.innerHTML = '<td>New Employee</td><td>Employee</td><td><button onclick="deleteEmployee(this)">Delete</button></td>';
+  }
+});
+
+// Function to delete an employee (HR only)
+function deleteEmployee(button) {
+  const row = button.parentElement.parentElement;
+  row.remove();
+}
+
+</script>
+</html>
