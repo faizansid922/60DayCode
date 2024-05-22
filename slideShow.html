@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slideshow</title>
+    
+</head>
+
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    background-color: #f3f3f3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.slideshow-container {
+    position: relative;
+    max-width: 800px;
+    margin: auto;
+    overflow: hidden;
+}
+
+.slide {
+    display: none;
+    width: 100%;
+}
+
+.slide img {
+    width: 100%;
+    height: auto;
+}
+
+.fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@keyframes fade {
+    from {opacity: .4} 
+    to {opacity: 1}
+}
+
+.controls {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.controls button {
+    padding: 10px 20px;
+    margin: 0 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+</style>
+
+
+<body>
+    <div class="slideshow-container">
+        <div class="slide fade">
+            <img src="https://via.placeholder.com/800x400?text=Image+1" alt="Image 1">
+        </div>
+        <div class="slide fade">
+            <img src="https://via.placeholder.com/800x400?text=Image+2" alt="Image 2">
+        </div>
+        <!-- Add more slides here -->
+        <div class="slide fade">
+            <img src="https://via.placeholder.com/800x400?text=Image+20" alt="Image 20">
+        </div>
+    </div>
+    <br>
+    <div class="controls">
+        <button id="prevBtn">Previous</button>
+        <button id="toggleBtn">Pause</button>
+        <button id="nextBtn">Next</button>
+    </div>
+    <script>
+        let slideIndex = 0;
+let slides = document.getElementsByClassName("slide");
+let autoSlide;
+let isPlaying = true;
+
+function showSlide(index) {
+    for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+    slides[index].style.display = "block";
+}
+
+function nextSlide() {
+    slideIndex = (slideIndex + 1) % slides.length;
+    showSlide(slideIndex);
+}
+
+function prevSlide() {
+    slideIndex = (slideIndex - 1 + slides.length) % slides.length;
+    showSlide(slideIndex);
+}
+
+function startSlideshow() {
+    autoSlide = setInterval(nextSlide, 2000); // Change image every 2 seconds
+}
+
+function stopSlideshow() {
+    clearInterval(autoSlide);
+}
+
+function toggleSlideshow() {
+    if (isPlaying) {
+        stopSlideshow();
+        document.getElementById("toggleBtn").innerText = "Play";
+    } else {
+        startSlideshow();
+        document.getElementById("toggleBtn").innerText = "Pause";
+    }
+    isPlaying = !isPlaying;
+}
+
+document.getElementById("nextBtn").addEventListener("click", () => {
+    stopSlideshow();
+    nextSlide();
+});
+
+document.getElementById("prevBtn").addEventListener("click", () => {
+    stopSlideshow();
+    prevSlide();
+});
+
+document.getElementById("toggleBtn").addEventListener("click", toggleSlideshow);
+
+showSlide(slideIndex);
+startSlideshow();
+
+    </script>
+</body>
+</html>
