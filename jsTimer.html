@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown Timer</title>
+    
+</head>
+<style>
+        body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+}
+
+.timer-container {
+    text-align: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.input-container input {
+    width: 50px;
+    padding: 10px;
+    margin: 5px;
+    font-size: 16px;
+    text-align: center;
+}
+
+.display {
+    font-size: 48px;
+    margin: 20px 0;
+}
+
+.controls button {
+    padding: 10px 20px;
+    margin: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+</style>
+<body>
+    <div class="timer-container">
+        <h1>Countdown Timer</h1>
+        <div class="input-container">
+            <input type="number" id="hours" placeholder="Hours" min="0">
+            <input type="number" id="minutes" placeholder="Minutes" min="0">
+            <input type="number" id="seconds" placeholder="Seconds" min="0">
+        </div>
+        <div class="display" id="display">00:00:00</div>
+        <div class="controls">
+            <button id="startBtn">Start</button>
+            <button id="pauseBtn">Pause</button>
+            <button id="resetBtn">Reset</button>
+        </div>
+    </div>
+    <script>
+        let timer;
+let totalTime = 0;
+let isPaused = true;
+
+const display = document.getElementById("display");
+const startBtn = document.getElementById("startBtn");
+const pauseBtn = document.getElementById("pauseBtn");
+const resetBtn = document.getElementById("resetBtn");
+
+startBtn.addEventListener("click", startTimer);
+pauseBtn.addEventListener("click", pauseTimer);
+resetBtn.addEventListener("click", resetTimer);
+
+function updateTime() {
+    let hours = Math.floor(totalTime / 3600);
+    let minutes = Math.floor((totalTime % 3600) / 60);
+    let seconds = totalTime % 60;
+
+    display.textContent = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+}
+
+function startTimer() {
+    if (isPaused) {
+        isPaused = false;
+        let hours = parseInt(document.getElementById("hours").value) || 0;
+        let minutes = parseInt(document.getElementById("minutes").value) || 0;
+        let seconds = parseInt(document.getElementById("seconds").value) || 0;
+        totalTime = hours * 3600 + minutes * 60 + seconds;
+
+        if (totalTime > 0) {
+            timer = setInterval(() => {
+                if (totalTime <= 0) {
+                    clearInterval(timer);
+                } else {
+                    totalTime--;
+                    updateTime();
+                }
+            }, 1000);
+        }
+    }
+}
+
+function pauseTimer() {
+    if (!isPaused) {
+        clearInterval(timer);
+        isPaused = true;
+    }
+}
+
+function resetTimer() {
+    clearInterval(timer);
+    isPaused = true;
+    totalTime = 0;
+    updateTime();
+    document.getElementById("hours").value = '';
+    document.getElementById("minutes").value = '';
+    document.getElementById("seconds").value = '';
+}
+
+updateTime();
+
+    </script>
+</body>
+</html>
